@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:33:44 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/02/15 17:49:53 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:56:11 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	main(int ac, char **av)
 	i = -1;
 	ft_init(ac, av, &info);
 	printf("il y a %d philos\n", info.n_philo);
+	//check id attribution for philos and forks
 	while (++i < info.n_philo)
 		printf("p_id = %d || lf_id = %d || rf_id = %d\n", info.philo[i].id, info.philo[i].l_fork_id, info.philo[i].r_fork_id);
 	return (0);
