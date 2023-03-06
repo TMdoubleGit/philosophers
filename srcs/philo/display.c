@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:34:45 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/04 17:48:22 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/06 15:09:05 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ void	display_global(t_philo philo, char *act)
 		printf("\tphilosophers have eaten all their meals!\n");
 	}
 	else
+	{
 		display_timestamp(timestamp_ms());
-		printf("\tPhilosopher %d\t");
+		printf("\tPhilosopher %d\t", philo.id);
 		display_action(act);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:40:02 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/04 16:48:59 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/06 15:09:02 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	size_of_timestamp(size_t ts)
 	size_t	i;
 
 	i = 1;
-	while(ts > 9)
+	while (ts > 9)
 	{
 		ts /= 10;
 		i++;

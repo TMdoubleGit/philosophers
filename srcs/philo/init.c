@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:46:21 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/04 17:48:45 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/06 15:09:05 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	ft_init_args(int ac, char **av, t_info *info)
 		info->t_die = ft_atoi(av[2]);
 		info->t_eat = ft_atoi(av[3]);
 		info->t_sleep = ft_atoi(av[4]);
+		if (ac == 6)
+			info->n_meals = ft_atoi(av[5]);
 		info->philo = malloc(sizeof(t_philo) * info->n_philo);
 		if (!info->philo)
 			ft_error(MLC);
