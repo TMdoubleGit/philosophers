@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 20:53:56 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/08 23:52:19 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,9 @@ size_t		gettimeofday_ms(void);
 size_t		timestamp_ms(void);
 size_t		size_of_timestamp(size_t ts);
 //END.C
-int    		check_end(t_info *info);
+void		dead_loop(t_info *info, t_philo philo);
+void		meal_loop(t_info *info);
+int			check_end(t_info *info);
 void		ft_exit(t_info *info);
 
 #endif
