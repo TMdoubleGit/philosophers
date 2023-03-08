@@ -10,6 +10,7 @@ SRC =	init \
 		time \
 		actions \
 		display \
+		end \
 		
 SRCS = $(addprefix ${DIRSRC}/, $(addsuffix .c, ${SRC}))
 

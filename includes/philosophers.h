@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/04 17:18:55 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:58:05 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,17 @@
 # define T_MEALS "Error: philosophers must eat at least once."
 # define MLC "Malloc error."
 
+# define MSE "is eating 🍜\n"
+# define MSFL "has taken a left fork 🍴\n"
+# define MSFR "has taken a right fork 🍴\n"
+# define MST "is thinking 🤔\n"
+# define MSSL "is sleeping 😴\n"
+# define MSD "is dead 🪦\n"
+# define MSM "All meals are done\n"
+
+# define EXIT_FAILURE 1
+# define EXIT_SUCCESS 0
+
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
 
@@ -34,38 +45,55 @@ typedef struct s_philo {
 	int			id;
 	int			r_fork_id;
 	int			l_fork_id;
-	int			eating_lock;
+	size_t		last_meal;
+	pthread_t	th;
 	t_info		*info;
 }		t_philo;
 
 typedef struct s_info {
 	int				n_philo;
 	int				n_meals;
-	pthread_mutex_t	fork;
-	int				t_die;
 	int				t_eat;
 	int				t_sleep;
 	int				t_think;
+	int				game_over;
 	int				meals_eaten;
+	size_t			t_die;
+	pthread_mutex_t	*fork;
+	pthread_mutex_t	message;
+	pthread_mutex_t	check;
 	t_philo			*philo;
 }			t_info;
 
 //LIBFT.C
 int			ft_isdigit(int c);
 void		ft_putstr_fd(char *s, int fd);
+int			ft_strlen(char *str);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_atoi(const char *nptr);
 //PARSING.C
 int			ft_error(char *err);
 void		ft_number(int ac, char **av);
 int			parse_args(int ac, char **av);
 //INIT.C
-void		ft_init_args(int ac, char **av, t_info *info);
+void		ft_init_thread(t_info *info);
+void		ft_init_struct(int ac, char **av, t_info *info);
+//ACTIONS.C
+void		philo_eat(t_philo *philo);
+void		philo_slt(t_philo *philo);
+void		*thread_routine(void *data);
+void		routine_even(t_philo *philo);
+void		routine_odd(t_philo *philo);
 //DISPLAY.C
 void		display_timestamp(size_t ts);
+void		display_action(t_philo *philo, char *act);
 void		display_global(t_philo *philo, char *act);
 //TIME.C
 size_t		gettimeofday_ms(void);
 size_t		timestamp_ms(void);
 size_t		size_of_timestamp(size_t ts);
+//END.C
+int    		check_end(t_info *info);
+void		ft_exit(t_info *info);
 
 #endif
