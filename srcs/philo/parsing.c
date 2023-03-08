@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:33:44 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/02 15:53:18 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:39:20 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,6 @@ void	ft_number(int ac, char **av)
 
 int	parse_args(int ac, char **av)
 {
-	int	i;
-
-	i = 0;
 	if (ac < 5)
 		ft_error(NUMB_ARG);
 	if (ac > 6)

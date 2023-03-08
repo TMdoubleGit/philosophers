@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 15:58:05 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:53:56 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ int			ft_error(char *err);
 void		ft_number(int ac, char **av);
 int			parse_args(int ac, char **av);
 //INIT.C
-void		ft_init_thread(t_info *info);
-void		ft_init_struct(int ac, char **av, t_info *info);
+void		inf_loop(t_info *info);
+void		init_thread(t_info *info);
+void		sub_init_struct(t_info *info);
+void		init_struct(int ac, char **av, t_info *info);
 //ACTIONS.C
 void		philo_eat(t_philo *philo);
 void		philo_slt(t_philo *philo);

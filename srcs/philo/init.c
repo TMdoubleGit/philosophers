@@ -6,13 +6,26 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:46:21 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 16:08:03 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:53:36 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_init_thread(t_info *info)
+void	inf_loop(t_info *info)
+{
+	while (1)
+	{
+		usleep(1000);
+		if (check_end(info) == 1)
+		{
+			ft_exit(info);
+			break ;
+		}
+	}
+}
+
+void	init_thread(t_info *info)
 {
 	int	i;
 
@@ -33,22 +46,28 @@ void	ft_init_thread(t_info *info)
 			ft_exit(info);
 	}
 	usleep(info->t_die * 1000);
-	while (1)
-	{
-		usleep(1000);
-		if (check_end(info) == 1)
-		{
-			ft_exit(info);
-			break ;
-		}
-	}
+	inf_loop(info);
 }
 
-void	ft_init_struct(int ac, char **av, t_info *info)
+void	sub_init_struct(t_info *info)
 {
 	int	i;
 
 	i = 0;
+	while (++i < info->n_philo + 1)
+	{
+		info->philo[i - 1].id = i;
+		info->philo[i - 1].l_fork_id = i;
+		info->philo[i - 1].info = info;
+		if (info->philo[i - 1].id == 1)
+			info->philo[i - 1].r_fork_id = info->n_philo - 1;
+		else
+			info->philo[i - 1].r_fork_id = info->philo[i - 1].id - 1;
+	}
+}
+
+void	init_struct(int ac, char **av, t_info *info)
+{
 	if (parse_args(ac, av) == 1)
 	{
 		info->n_philo = ft_atoi(av[1]);
@@ -61,16 +80,7 @@ void	ft_init_struct(int ac, char **av, t_info *info)
 		info->philo = malloc(sizeof(t_philo) * info->n_philo);
 		if (!info->philo)
 			ft_error(MLC);
-		while (++i < info->n_philo + 1)
-		{
-			info->philo[i - 1].id = i;
-			info->philo[i - 1].l_fork_id = i;
-			info->philo[i - 1].info = info;
-			if (info->philo[i - 1].id == 1)
-				info->philo[i - 1].r_fork_id = info->n_philo - 1;
-			else
-				info->philo[i - 1].r_fork_id = info->philo[i - 1].id - 1;
-		}
+		sub_init_struct(info);
 	}
 }
 
@@ -81,7 +91,7 @@ int	main(int ac, char **av)
 	info = malloc(sizeof(t_info));
 	if (!info)
 		return (0);
-	ft_init_struct(ac, av, info);
-	ft_init_thread(info);
+	init_struct(ac, av, info);
+	init_thread(info);
 	return (0);
 }

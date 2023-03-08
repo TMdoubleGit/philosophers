@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:34:45 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 15:58:40 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:46:19 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	display_global(t_philo *philo, char *act)
 		pthread_mutex_lock(&info->message);
 		display_timestamp(timestamp_ms());
 		printf("\t%s", act);
-		pthread_mutex_unlock(&info->message);		
+		pthread_mutex_unlock(&info->message);
 	}
 	else
 	{
@@ -60,6 +60,6 @@ void	display_global(t_philo *philo, char *act)
 		display_timestamp(timestamp_ms());
 		printf("\t%d\t", philo->id);
 		display_action(philo, act);
-		pthread_mutex_unlock(&info->message);	
+		pthread_mutex_unlock(&info->message);
 	}
 }

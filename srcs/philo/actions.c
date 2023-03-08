@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:26:05 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 16:46:57 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:54:24 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	routine_odd(t_philo *philo)
 	{
 		usleep(philo->info->t_eat * 2000);
 		philo_eat(philo);
-		philo_slt(philo);		
+		philo_slt(philo);
 	}
 }
