@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:34:45 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/09 17:32:01 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:30:04 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	display_timestamp(size_t ts)
 	i = 8 - size_of_timestamp(ts);
 	while (i-- > 0)
 		printf(".");
-	printf("%lu", timestamp_ms());
+	printf("%d", timestamp_ms());
 }
 
 void	display_action(t_philo *philo, char *act)
@@ -47,11 +47,7 @@ void	display_global(t_philo *philo, char *act)
 	info = philo->info;
 	pthread_mutex_lock(&info->message);
 	display_timestamp(timestamp_ms());
-	// pthread_mutex_unlock(&info->message);
-	// pthread_mutex_lock(&info->message);
 	printf("\t%d\t", philo->id);
-	// pthread_mutex_unlock(&info->message);	
-	// pthread_mutex_lock(&info->message);
 	display_action(philo, act);
 	pthread_mutex_unlock(&info->message);
 }

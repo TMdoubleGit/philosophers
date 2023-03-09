@@ -6,13 +6,13 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:40:02 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/06 15:09:02 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:28:11 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-size_t	gettimeofday_ms(void)
+int	gettimeofday_ms(void)
 {
 	static struct timeval	tv;
 
@@ -20,18 +20,18 @@ size_t	gettimeofday_ms(void)
 	return (tv.tv_sec * 1000 + (tv.tv_usec / 1000));
 }
 
-size_t	timestamp_ms(void)
+int	timestamp_ms(void)
 {
-	static size_t	start = 0;
+	static int	start = 0;
 
 	if (start == 0)
 		start = gettimeofday_ms();
 	return (gettimeofday_ms() - start);
 }
 
-size_t	size_of_timestamp(size_t ts)
+int	size_of_timestamp(int ts)
 {
-	size_t	i;
+	int	i;
 
 	i = 1;
 	while (ts > 9)
