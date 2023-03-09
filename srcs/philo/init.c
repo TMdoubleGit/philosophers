@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:46:21 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 20:53:36 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:01:45 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	init_thread(t_info *info)
 {
 	int	i;
 
-	i = -1;
 	info->fork = malloc(sizeof(pthread_mutex_t) * info->n_philo);
 	if (!info->fork)
 		return ;
@@ -37,6 +36,7 @@ void	init_thread(t_info *info)
 		ft_exit(info);
 	if (pthread_mutex_init(&info->check, NULL) != 0)
 		ft_exit(info);
+	i = -1;
 	while (++i < info->n_philo)
 	{
 		if (pthread_mutex_init(&info->fork[i], NULL) != 0)
@@ -45,7 +45,24 @@ void	init_thread(t_info *info)
 				&info->philo[i]) != 0)
 			ft_exit(info);
 	}
-	usleep(info->t_die * 1000);
+	// i = 1;
+	// while (i < info->n_philo)
+	// {
+	// 	if (pthread_create(&info->philo[i].th, NULL, thread_routine,
+	// 			&info->philo[i]) != 0)
+	// 		ft_exit(info);
+	// 	i = i + 2;
+	// }
+	// usleep(info->t_eat * 1000);
+	// i = 0;
+	// while (i < info->n_philo)
+	// {
+	// 	if (pthread_create(&info->philo[i].th, NULL, thread_routine,
+	// 			&info->philo[i]) != 0)
+	// 		ft_exit(info);
+	// 	i = i + 2;
+	// }
+	usleep(info->t_eat * 1000);
 	inf_loop(info);
 }
 
@@ -60,9 +77,10 @@ void	sub_init_struct(t_info *info)
 		info->philo[i - 1].l_fork_id = i;
 		info->philo[i - 1].info = info;
 		if (info->philo[i - 1].id == 1)
-			info->philo[i - 1].r_fork_id = info->n_philo - 1;
+			info->philo[i - 1].r_fork_id = info->n_philo;
 		else
 			info->philo[i - 1].r_fork_id = info->philo[i - 1].id - 1;
+	// printf("id = %d | lf = %d | rf = %d\n", info->philo[i - 1].id, info->philo[i - 1].l_fork_id, info->philo[i - 1].r_fork_id); 
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:26:05 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 20:54:24 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:37:18 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 
 void	philo_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->info->fork[philo->l_fork_id]);
-	display_global(philo, MSFL);
-	pthread_mutex_lock(&philo->info->fork[philo->r_fork_id]);
-	display_global(philo, MSFR);
+	pthread_mutex_lock(&philo->info->fork[philo->l_fork_id - 1]);
+	display_global(philo, MSF);
+	pthread_mutex_lock(&philo->info->fork[philo->r_fork_id - 1]);
+	display_global(philo, MSF);
 	display_global(philo, MSE);
+	pthread_mutex_lock(&philo->info->meals);
 	philo->last_meal = timestamp_ms();
-	philo->info->meals_eaten += 1;
+	pthread_mutex_unlock(&philo->info->meals);
 	usleep(philo->info->t_eat * 1000);
-	pthread_mutex_unlock(&philo->info->fork[philo->l_fork_id]);
-	pthread_mutex_unlock(&philo->info->fork[philo->r_fork_id]);
+	pthread_mutex_lock(&philo->info->meals);
+	if (philo->info->n_meals > 0)
+		philo->info->meals_eaten++;
+	pthread_mutex_unlock(&philo->info->meals);
+	pthread_mutex_unlock(&philo->info->fork[philo->l_fork_id - 1]);
+	pthread_mutex_unlock(&philo->info->fork[philo->r_fork_id - 1]);
 }
 
 void	philo_slt(t_philo *philo)
@@ -65,18 +70,18 @@ void	routine_even(t_philo *philo)
 
 void	routine_odd(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
+	if (philo->id == 1)
 	{
 		philo_eat(philo);
 		philo_slt(philo);
 	}
-	else if (philo->id % 2 == 1 && philo->id != philo->info->n_philo)
+	else if (philo->id % 2 == 0)
 	{
 		usleep(philo->info->t_eat * 1000);
 		philo_eat(philo);
 		philo_slt(philo);
 	}
-	else if (philo->id % 2 == 1 && philo->id == philo->info->n_philo)
+	else if (philo->id %2 == 1 && philo->id != 1)
 	{
 		usleep(philo->info->t_eat * 2000);
 		philo_eat(philo);

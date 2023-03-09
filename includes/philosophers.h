@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/08 23:52:19 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:21:39 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@
 # define MLC "Malloc error."
 
 # define MSE "is eating 🍜\n"
-# define MSFL "has taken a left fork 🍴\n"
-# define MSFR "has taken a right fork 🍴\n"
+# define MSF "has taken a fork 🍴\n"
 # define MST "is thinking 🤔\n"
 # define MSSL "is sleeping 😴\n"
 # define MSD "is dead 🪦\n"
@@ -60,6 +59,7 @@ typedef struct s_info {
 	int				meals_eaten;
 	size_t			t_die;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	meals;
 	pthread_mutex_t	message;
 	pthread_mutex_t	check;
 	t_philo			*philo;
