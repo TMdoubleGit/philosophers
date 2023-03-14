@@ -2,7 +2,7 @@ NAME = philo
 
 DIRSRC = ./srcs/
 
-DIRCINC = ./includes
+DIRCINC = ./includes/
 
 SRC =	init \
 		libft \
