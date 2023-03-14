@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/09 23:29:03 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:14:12 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 # define NUMB_ARG "Error: wrong number of arguments."
 # define DIGITS "Error: arguments should only be composed by digits."
-# define ONE_PHILO "Error: a philosopher should never eat alone."
 # define T_ACTION "Error: time only goes one way in this dimension..."
 # define T_MEALS "Error: philosophers must eat at least once."
 # define MLC "Malloc error."
@@ -32,7 +31,7 @@
 # define MST "is thinking 🤔\n"
 # define MSSL "is sleeping 😴\n"
 # define MSD "is dead 🪦\n"
-# define MSM "All meals are done\n"
+# define MSM "All meals are done"
 
 # define EXIT_FAILURE 1
 # define EXIT_SUCCESS 0
@@ -59,9 +58,7 @@ typedef struct s_info {
 	int				meals_eaten;
 	size_t			t_die;
 	pthread_mutex_t	*fork;
-	pthread_mutex_t	meals;
-	pthread_mutex_t	message;
-	pthread_mutex_t	check;
+	pthread_mutex_t	lock;
 	t_philo			*philo;
 }			t_info;
 
@@ -91,9 +88,9 @@ void		display_timestamp(size_t ts);
 void		display_action(t_philo *philo, char *act);
 void		display_global(t_philo *philo, char *act);
 //TIME.C
-int			gettimeofday_ms(void);
-int			timestamp_ms(void);
-int			size_of_timestamp(int ts);
+size_t			gettimeofday_ms(void);
+size_t			timestamp_ms(void);
+size_t			size_of_timestamp(size_t ts);
 //END.C
 void		dead_loop(t_info *info, t_philo philo);
 void		meal_loop(t_info *info);

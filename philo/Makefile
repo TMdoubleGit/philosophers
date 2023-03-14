@@ -1,6 +1,6 @@
-NAME = philosophers
+NAME = philo
 
-DIRSRC = ./srcs/philo/
+DIRSRC = ./srcs/
 
 DIRCINC = ./includes/
 
@@ -11,6 +11,7 @@ SRC =	init \
 		actions \
 		display \
 		end \
+		main \
 		
 SRCS = $(addprefix ${DIRSRC}/, $(addsuffix .c, ${SRC}))
 

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:28:26 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/09 23:24:05 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:14:06 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	dead_loop(t_info *info, t_philo philo)
 {
-	display_global(&philo, MSD);
 	info->game_over = 1;
-	pthread_mutex_unlock(&info->check);
+	display_timestamp(timestamp_ms());
+	printf("\t%d\t%s", philo.id, MSD);
+	pthread_mutex_unlock(&info->lock);
 }
 
 void	meal_loop(t_info *info)
 {
-	pthread_mutex_lock(&info->message);
-	printf(MSM);
-	pthread_mutex_unlock(&info->message);
 	info->game_over = 1;
-	pthread_mutex_unlock(&info->check);
+	pthread_mutex_unlock(&info->lock);
 }
 
 int	check_end(t_info *info)
@@ -33,23 +31,18 @@ int	check_end(t_info *info)
 	int	i;
 
 	i = -1;
+	pthread_mutex_lock(&info->lock);
 	while (++i < info->n_philo)
 	{
-		pthread_mutex_lock(&info->check);
 		if ((timestamp_ms() - info->philo[i].last_meal) > info->t_die)
+			return (dead_loop(info, info->philo[i]), 1);
+		else if (info->n_meals > 0 && info->n_meals == info->meals_eaten)
 		{
-			dead_loop(info, info->philo[i]);
-			return (1);
-		}
-		else if (info->n_meals == info->meals_eaten && info->n_meals > 0)
-		{
-			usleep(1000);
 			meal_loop(info);
 			return (1);
 		}
-		pthread_mutex_unlock(&info->check);
 	}
-	pthread_mutex_unlock(&info->check);
+	pthread_mutex_unlock(&info->lock);
 	return (0);
 }
 
@@ -60,11 +53,14 @@ void	ft_exit(t_info *info)
 	i = -1;
 	while (++i < info->n_philo)
 	{
-		pthread_detach(info->philo[i].th);
+		pthread_join(info->philo[i].th, NULL);
+	}
+	i = -1;
+	while (++i < info->n_philo)
+	{
 		pthread_mutex_destroy(&info->fork[i]);
 	}
-	pthread_mutex_destroy(&info->message);
-	pthread_mutex_destroy(&info->check);
+	pthread_mutex_destroy(&info->lock);
 	free(info->fork);
 	free(info->philo);
 	free(info);
