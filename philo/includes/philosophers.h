@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/14 18:14:12 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:50:11 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@
 # define T_MEALS "Error: philosophers must eat at least once."
 # define MLC "Malloc error."
 
-# define MSE "is eating 🍜\n"
-# define MSF "has taken a fork 🍴\n"
-# define MST "is thinking 🤔\n"
-# define MSSL "is sleeping 😴\n"
-# define MSD "is dead 🪦\n"
-# define MSM "All meals are done"
+# define MSE "is eating\n"
+# define MSF "has taken a fork\n"
+# define MST "is thinking\n"
+# define MSSL "is sleeping\n"
+# define MSD "is dead\n"
 
 # define EXIT_FAILURE 1
 # define EXIT_SUCCESS 0
@@ -88,9 +87,9 @@ void		display_timestamp(size_t ts);
 void		display_action(t_philo *philo, char *act);
 void		display_global(t_philo *philo, char *act);
 //TIME.C
-size_t			gettimeofday_ms(void);
-size_t			timestamp_ms(void);
-size_t			size_of_timestamp(size_t ts);
+size_t		gettimeofday_ms(void);
+size_t		timestamp_ms(void);
+size_t		size_of_timestamp(size_t ts);
 //END.C
 void		dead_loop(t_info *info, t_philo philo);
 void		meal_loop(t_info *info);

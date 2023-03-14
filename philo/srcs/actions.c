@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:26:05 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/14 18:14:05 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:49:48 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	lock_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
+		usleep(1000);
 		pthread_mutex_lock(&philo->info->fork[philo->l_fork_id - 1]);
 		display_global(philo, MSF);
 		pthread_mutex_lock(&philo->info->fork[philo->r_fork_id - 1]);
@@ -26,7 +27,7 @@ void	lock_forks(t_philo *philo)
 		pthread_mutex_lock(&philo->info->fork[philo->r_fork_id - 1]);
 		display_global(philo, MSF);
 		pthread_mutex_lock(&philo->info->fork[philo->l_fork_id - 1]);
-		display_global(philo, MSF);	
+		display_global(philo, MSF);
 	}
 }
 
@@ -47,10 +48,6 @@ void	unlock_forks(t_philo *philo)
 void	philo_eat(t_philo *philo)
 {
 	lock_forks(philo);
-	// pthread_mutex_lock(&philo->info->fork[philo->l_fork_id - 1]);
-	// display_global(philo, MSF);
-	// pthread_mutex_lock(&philo->info->fork[philo->r_fork_id - 1]);
-	// display_global(philo, MSF);
 	display_global(philo, MSE);
 	pthread_mutex_lock(&philo->info->lock);
 	philo->last_meal = timestamp_ms();
@@ -58,8 +55,6 @@ void	philo_eat(t_philo *philo)
 		philo->info->meals_eaten++;
 	pthread_mutex_unlock(&philo->info->lock);
 	usleep(philo->info->t_eat * 1000);
-	// pthread_mutex_unlock(&philo->info->fork[philo->l_fork_id - 1]);
-	// pthread_mutex_unlock(&philo->info->fork[philo->r_fork_id - 1]);
 	unlock_forks(philo);
 }
 

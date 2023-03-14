@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:46:21 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/14 18:14:07 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:44:45 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	init_thread(t_info *info)
 		if (pthread_mutex_init(&info->fork[i], NULL) != 0)
 			ft_exit(info);
 	init_thread_param(info, 1);
-	usleep(info->t_eat * 1000);
 	init_thread_param(info, 0);
 	usleep(info->t_eat * 1000);
 	inf_loop(info);
