@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:33:44 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/14 18:14:09 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:03:34 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	parse_args(int ac, char **av)
 	if (ac > 6)
 		ft_error(NUMB_ARG);
 	ft_number(ac, av);
+	if (ft_atoi(av[1]) <= 0)
+		ft_error(T_PHILO);
 	if (ft_atoi(av[2]) <= 0 || ft_atoi(av[3]) <= 0 || ft_atoi(av[4]) <= 0)
 		ft_error(T_ACTION);
 	if (ac == 6 && ft_atoi(av[5]) <= 0)

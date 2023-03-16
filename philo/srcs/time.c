@@ -6,11 +6,19 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:40:02 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/14 18:14:12 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:20:53 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	ft_abs(int i)
+{
+	if (i >= 0)
+		return (i);
+	else
+		return (-i);
+}
 
 size_t	gettimeofday_ms(void)
 {

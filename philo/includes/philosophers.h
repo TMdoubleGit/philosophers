@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/15 15:36:32 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:04:06 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define NUMB_ARG "Error: wrong number of arguments."
 # define DIGITS "Error: arguments should only be composed by digits."
+# define T_PHILO "Error: please enter at least one philo !"
 # define T_ACTION "Error: time only goes one way in this dimension..."
 # define T_MEALS "Error: philosophers must eat at least once."
 # define MLC "Malloc error."
@@ -87,6 +88,7 @@ void		display_timestamp(size_t ts);
 void		display_action(t_philo *philo, char *act);
 void		display_global(t_philo *philo, char *act);
 //TIME.C
+int			ft_abs(int i);
 size_t		gettimeofday_ms(void);
 size_t		timestamp_ms(void);
 size_t		size_of_timestamp(size_t ts);
