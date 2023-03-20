@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/16 17:04:06 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:45:24 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ int			ft_isdigit(int c);
 void		ft_putstr_fd(char *s, int fd);
 int			ft_strlen(char *str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-int			ft_atoi(const char *nptr);
+int			ft_atol(const char *nptr);
 //PARSING.C
-int			ft_error(char *err);
-void		ft_number(int ac, char **av);
-int			parse_args(int ac, char **av);
+int			ft_error(char *err, t_info *info);
+int			ft_number(int ac, char **av);
+int			parse_args(int ac, char **av, t_info *info);
 //INIT.C
 void		inf_loop(t_info *info);
-void		init_thread(t_info *info);
+void		init_thread(int ac, char **av, t_info *info);
 void		sub_init_struct(t_info *info);
-void		init_struct(int ac, char **av, t_info *info);
+int			init_struct(int ac, char **av, t_info *info);
 //ACTIONS.C
 void		philo_eat(t_philo *philo);
 void		philo_slt(t_philo *philo);
@@ -96,6 +96,6 @@ size_t		size_of_timestamp(size_t ts);
 void		dead_loop(t_info *info, t_philo philo);
 void		meal_loop(t_info *info);
 int			check_end(t_info *info);
-void		ft_exit(t_info *info);
+int			ft_exit(t_info *info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:28:26 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/15 22:02:03 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:15:25 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_end(t_info *info)
 	return (0);
 }
 
-void	ft_exit(t_info *info)
+int	ft_exit(t_info *info)
 {
 	int	i;
 
@@ -65,5 +65,5 @@ void	ft_exit(t_info *info)
 	free(info->fork);
 	free(info->philo);
 	free(info);
-	exit(EXIT_SUCCESS);
+	return (1);
 }

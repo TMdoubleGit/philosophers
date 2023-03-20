@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 16:30:27 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/16 16:41:10 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:36:55 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (*(unsigned char *)(s1 + i) - *(unsigned char *)(s2 + i));
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_atol(const char *nptr)
 {
-	int	res;
-	int	sign;
+	long long	res;
+	long long	sign;
 
 	res = 0;
 	sign = 1;
@@ -80,5 +80,7 @@ int	ft_atoi(const char *nptr)
 		res = res * 10 + (*nptr - '0');
 		nptr++;
 	}
+	if (res > 2147483647)
+		return (0);
 	return (res * sign);
 }

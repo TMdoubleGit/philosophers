@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:26:05 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/16 16:50:10 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:48:54 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,13 @@ void	philo_eat(t_philo *philo)
 
 void	philo_slt(t_philo *philo)
 {
-	int	i;
-
-	i = philo->info->t_eat - philo->info->t_sleep;
 	display_global(philo, MSSL);
 	usleep(philo->info->t_sleep * 1000);
 	display_global(philo, MST);
 	if (philo->info->n_philo % 2 == 1)
 		usleep(philo->info->t_eat * 1000);
 	else
-	{
-		if (ft_abs(i))
-			usleep(i * 1000);
-		else
-			usleep(10000);
-	}
+		usleep(1000);
 }
 
 void	*thread_routine(void *data)

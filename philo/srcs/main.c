@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 13:05:39 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/14 18:14:08 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:25:17 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	main(int ac, char **av)
 	info = malloc(sizeof(t_info));
 	if (!info)
 		return (0);
-	init_struct(ac, av, info);
-	init_thread(info);
+	init_thread(ac, av, info);
 	return (0);
 }

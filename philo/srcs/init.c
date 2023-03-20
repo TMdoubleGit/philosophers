@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:46:21 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/16 15:05:48 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:16:15 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,26 @@ void	init_thread_param(t_info *info, int i)
 	}
 }
 
-void	init_thread(t_info *info)
+void	init_thread(int ac, char **av, t_info *info)
 {
 	int	i;
 
-	info->fork = malloc(sizeof(pthread_mutex_t) * info->n_philo);
-	if (!info->fork)
-		return ;
-	if (pthread_mutex_init(&info->lock, NULL) != 0)
-		ft_exit(info);
-	i = -1;
-	while (++i < info->n_philo)
-		if (pthread_mutex_init(&info->fork[i], NULL) != 0)
+	if (init_struct(ac, av, info) == 1)
+	{
+		info->fork = malloc(sizeof(pthread_mutex_t) * info->n_philo);
+		if (!info->fork)
+			return ;
+		if (pthread_mutex_init(&info->lock, NULL) != 0)
 			ft_exit(info);
-	init_thread_param(info, 1);
-	init_thread_param(info, 0);
-	usleep(info->t_eat * 1000);
-	inf_loop(info);
+		i = -1;
+		while (++i < info->n_philo)
+			if (pthread_mutex_init(&info->fork[i], NULL) != 0)
+				ft_exit(info);
+		init_thread_param(info, 1);
+		init_thread_param(info, 0);
+		usleep(info->t_eat * 1000);
+		inf_loop(info);
+	}
 }
 
 void	sub_init_struct(t_info *info)
@@ -72,23 +75,25 @@ void	sub_init_struct(t_info *info)
 	}
 }
 
-void	init_struct(int ac, char **av, t_info *info)
+int	init_struct(int ac, char **av, t_info *info)
 {
-	if (parse_args(ac, av) == 1)
+	if (parse_args(ac, av, info) == 1)
 	{
-		info->n_philo = ft_atoi(av[1]);
-		info->t_die = ft_atoi(av[2]);
-		info->t_eat = ft_atoi(av[3]);
-		info->t_sleep = ft_atoi(av[4]);
+		info->n_philo = ft_atol(av[1]);
+		info->t_die = ft_atol(av[2]);
+		info->t_eat = ft_atol(av[3]);
+		info->t_sleep = ft_atol(av[4]);
 		info->game_over = 0;
 		info->meals_eaten = 0;
 		if (ac == 6)
-			info->n_meals = ft_atoi(av[5]) * info->n_philo;
+			info->n_meals = ft_atol(av[5]) * info->n_philo;
 		else
 			info->n_meals = 0;
 		info->philo = malloc(sizeof(t_philo) * info->n_philo);
 		if (!info->philo)
-			ft_error(MLC);
+			ft_error(MLC, info);
 		sub_init_struct(info);
+		return (1);
 	}
+	return (0);
 }

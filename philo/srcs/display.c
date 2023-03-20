@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 15:34:45 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/14 22:22:46 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:14:38 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	display_action(t_philo *philo, char *act)
 	{
 		printf("%s", MSD);
 		ft_exit(philo->info);
-		exit (1);
 	}
 }
 
