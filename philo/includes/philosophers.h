@@ -6,7 +6,7 @@
 /*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:06:54 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/20 13:45:24 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:00:45 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@
 # define MST "is thinking\n"
 # define MSSL "is sleeping\n"
 # define MSD "is dead\n"
-
-# define EXIT_FAILURE 1
-# define EXIT_SUCCESS 0
 
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
