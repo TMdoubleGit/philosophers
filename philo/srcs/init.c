@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmichel- <tmichel-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tmichel- <tmichel-@students.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 17:46:21 by tmichel-          #+#    #+#             */
-/*   Updated: 2023/03/20 14:16:15 by tmichel-         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:49:35 by tmichel-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	init_thread(int ac, char **av, t_info *info)
 				ft_exit(info);
 		init_thread_param(info, 1);
 		init_thread_param(info, 0);
-		usleep(info->t_eat * 1000);
+		usleep(1000);
 		inf_loop(info);
 	}
 }
